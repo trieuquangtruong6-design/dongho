@@ -3,7 +3,7 @@ import path from "path";
 import { createServer as createViteServer } from "vite";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { prisma } from "./lib/prisma";
+import { prisma } from "./lib/prisma.js";
 
 // Mock database for standard seed products
 const PRODUCTS = [
