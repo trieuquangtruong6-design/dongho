@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, ui-serif, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Scrollbar hiding styles for horizontal categories nav on mobile screens */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+html,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.font-luxury {
+  font-family: "Playfair Display", Georgia, ui-serif, serif;
+}
+
+.font-vietnam {
+  font-family: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+.admin-input {
+  height: 44px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #d4d4d4;
+  background: #ffffff;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #171717;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-input:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.16);
+}

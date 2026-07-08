@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Membership {
+  MEMBER
+  VIP
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+}
+
+model User {
+  id           String     @id @default(cuid())
+  name         String
+  email        String     @unique
+  passwordHash String
+  phone        String?
+  address      String?
+  avatar       String?
+  membership   Membership @default(MEMBER)
+  role         UserRole   @default(CUSTOMER)
+  orders       Order[]
+  wishlists    Wishlist[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Product {
+  id              String      @id
+  code            String      @unique
+  name            String
+  category        String
+  brand           String
+  origin          String
+  target          String?
+  price           Int
+  discountPrice   Int?
+  image           String
+  isFeatured      Boolean     @default(false)
+  isNew           Boolean     @default(false)
+  isLimited       Boolean     @default(false)
+  size            String?
+  glassMaterial   Boolean?
+  caseMaterial    Boolean?
+  waterResistance String?
+  description     String
+  orderItems      OrderItem[]
+  wishlists       Wishlist[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([category])
+  @@index([brand])
+}
+
+model Order {
+  id              String      @id
+  warrantyCode    String      @unique
+  userId          String?
+  userEmail       String?
+  customerName    String
+  customerPhone   String
+  customerAddress String
+  totalOriginal   Int
+  totalDiscounted Int
+  discountRate    Decimal     @db.Decimal(5, 4)
+  status          String      @default("CHO_XAC_NHAN")
+  note            String?
+  user            User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([userEmail])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id              String   @id @default(cuid())
+  orderId         String
+  productId       String?
+  productSnapshot Json
+  quantity        Int
+  unitPrice       Int
+  lineTotal       Int
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product         Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Wishlist {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@index([productId])
+}

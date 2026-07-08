@@ -1,0 +1,8 @@
+{
+  "name": "Dang Quang Watch",
+  "description": "Premium e-commerce platform inspired by Dang Quang Watch. Offers high-quality watches, eyewear, and accessories, featuring a fully functional shopping cart, wishlist, categories, product details, user auth, and an admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
