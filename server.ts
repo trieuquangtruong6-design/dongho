@@ -1,6 +1,5 @@
 ﻿import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { prisma } from "./lib/prisma.js";
@@ -1356,6 +1355,7 @@ export async function createApp(options: CreateAppOptions = {}) {
 
   // Vite middleware for development
   if (options.useVite) {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
