@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+# Dang Quang Watch
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website ban dong ho va phu kien, co gio hang, dat hang, tai khoan khach hang va trang quan tri.
 
-Currently, two official plugins are available:
+## Link demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Website: https://dongho-theta.vercel.app
+- Admin: https://dongho-theta.vercel.app/admin
 
-## React Compiler
+## Tai khoan admin demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Email: `admin@dangquangwatch.vn`
+- Mat khau: `Admin@123456`
 
-## Expanding the ESLint configuration
+## Chuc nang chinh
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Xem danh sach san pham theo danh muc.
+- Xem chi tiet san pham.
+- Them san pham vao gio hang va dat hang.
+- Dang ky, dang nhap tai khoan khach hang.
+- Quan tri don hang.
+- Quan tri san pham: them, sua, xoa, cap nhat san pham len shop.
+- Quan tri khach hang/nguoi dung.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Cong nghe su dung
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React + TypeScript + Vite
+- Express API
+- Prisma ORM
+- PostgreSQL/Supabase
+- Vercel deploy
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Bien moi truong
+
+Can tao file `.env` khi chay local:
+
+```env
+DATABASE_URL="..."
+DIRECT_URL="..."
+JWT_SECRET="..."
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Chay local
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+npm run db:push
+npm run db:seed
+npm run admin:create
+npm run dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Sau khi chay local, mo:
+
+```text
+http://localhost:3000
 ```
